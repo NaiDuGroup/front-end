@@ -1,0 +1,38 @@
+.cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Amatic SC', cursive;
+      font-size: 40px;
+      margin: 20px auto;
+}
+
+.manage-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &__btn {
+      width: 49%;
+    }
+  }
+
+.ff {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.totals {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &--text {
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    margin: 20px 0px;
+  }
+}

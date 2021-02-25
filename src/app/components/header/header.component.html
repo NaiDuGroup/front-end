@@ -1,0 +1,113 @@
+<div class="main-panel">
+
+  <div class="left-side">
+      <a [routerLink]="['/']">
+        <img class="left-side__logo_img" src="../../../assets/images/logo.jpg">
+      </a>
+    
+    <span class="left-side__logo_name">Good&Food Cafe</span>
+    <div class="small-dev-menu">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <span class="right-side__btn">
+        Меню
+      </span>
+    </button>
+    <mat-menu #menu="matMenu" class="drop-menu">
+      <button 
+          mat-menu-item
+          [routerLink]="['/breakfasts']">
+        <span class="drop-btn-text">
+          Завтраки
+        </span>
+      </button>
+      <button 
+          mat-menu-item
+          [routerLink]="['/desserts']">
+          <span class="drop-btn-text">
+              Десерты
+          </span>
+      </button>
+      <button 
+          mat-menu-item
+          [routerLink]="['/hotMeals']">
+          <span class="drop-btn-text">
+              Вторые блюда
+          </span>
+      </button>
+      <button 
+          mat-menu-item
+          [routerLink]="['/soups']">
+          <span class="drop-btn-text">
+              Супы
+          </span>
+      </button>
+    </mat-menu>
+  </div>
+  </div>
+
+  <div class="right-side">
+    <div class="nav">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span class="right-side__btn">
+          Меню
+        </span>
+      </button>
+      <mat-menu #menu="matMenu" class="drop-menu">
+        <button 
+            mat-menu-item
+            [routerLink]="['/breakfasts']">
+          <span class="drop-btn-text">
+            Завтраки
+          </span>
+        </button>
+        <button 
+            mat-menu-item
+            [routerLink]="['/desserts']">
+            <span class="drop-btn-text">
+                Десерты
+            </span>
+        </button>
+        <button 
+            mat-menu-item
+            [routerLink]="['/hotMeals']">
+            <span class="drop-btn-text">
+                Вторые блюда
+            </span>
+        </button>
+        <button 
+            mat-menu-item
+            [routerLink]="['/soups']">
+            <span class="drop-btn-text">
+                Супы
+            </span>
+        </button>
+      </mat-menu>
+
+      <button mat-button>
+        <span class="right-side__btn">
+          О нас
+        </span>
+      </button>
+
+      <button mat-button>
+        <span class="right-side__btn">
+          Контакты
+        </span>
+      </button>
+
+      <button mat-button>
+        <span class="right-side__btn">
+          Условия доставки
+        </span>
+      </button>
+
+      <span>|</span>
+    </div>
+
+    <div class="shopping-cart">
+      <app-shopping-cart>
+      </app-shopping-cart>
+    </div>
+
+  </div>
+</div>

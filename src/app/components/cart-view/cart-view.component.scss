@@ -1,0 +1,213 @@
+@media (min-width: 768px) {
+  .cart-view {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+      font-family: 'Amatic SC', cursive;
+      font-size: 40px;
+      margin: 20px auto;
+    }
+
+    &__separator {
+      width: 100%;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px;
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0px;
+    }
+  }
+
+  .line1 {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+  }
+
+  .line2 {
+    width: 100%;
+  }
+
+  .main-row {
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+
+    &__image {
+      height: 110px;
+      width: 110px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin: 0px 10px;
+
+      &--name {
+        font-size: 20px;
+      }
+
+      &--description {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .second-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+
+    &--count {
+      margin: 0px 10px;
+    }
+  }
+
+  .totals {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &--text {
+      font-family: 'Amatic SC', cursive;
+      font-size: 40px;
+      margin: 20px 0px;
+    }
+  }
+
+  .manage-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__btn {
+      width: 49%;
+    }
+  }
+
+  .text {
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    margin: 85px auto;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .cart-view {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+      font-family: 'Amatic SC', cursive;
+      font-size: 40px;
+      margin: 20px auto;
+    }
+
+    &__separator {
+      width: 100%;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      margin: 0 2px;
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0px;
+    }
+  }
+
+  .line1 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+  }
+
+  .line2 {
+    width: 100%;
+  }
+
+  .main-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &__image {
+      height: 110px;
+      width: 110px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin: 0px 10px;
+
+      &--name {
+        font-size: 20px;
+      }
+
+      &--description {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .second-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &--count {
+      margin: 0px 10px;
+    }
+  }
+
+  .totals {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &--text {
+      font-family: 'Amatic SC', cursive;
+      font-size: 40px;
+      margin: 20px 0px;
+    }
+  }
+
+  .manage-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__btn {
+      width: 49%;
+    }
+  }
+  
+  .text {
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    margin: 85px auto;
+  }
+}

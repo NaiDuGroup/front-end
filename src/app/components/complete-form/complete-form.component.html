@@ -1,0 +1,48 @@
+<div class="cont">
+    <span class="title">
+        Оформление заказа
+    </span>
+
+
+    <form [formGroup]="orderForm" (submit)="completeOrder()">
+        <mat-form-field class="ff" appearance="fill">
+          <mat-label>Ваше имя</mat-label>
+          <input matInput placeholder="Иван Иванов" formControlName="name">
+          <mat-error *ngIf="name1.invalid">{{getNameErrorMessage()}}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ff" appearance="fill">
+            <mat-label>Ваш емэйл</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email">
+            <mat-error *ngIf="email1.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ff" appearance="fill">
+            <mat-label>Ваш телефон</mat-label>
+            <input matInput placeholder="+373 12 345678" formControlName="telephone" type="number">
+            <mat-error *ngIf="tel1.invalid">{{getTelephoneErrorMessage()}}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ff" appearance="fill">
+            <mat-label>Ваш адрес</mat-label>
+            <input matInput placeholder="г. Кишинёв, ул.Кодрилор 16" formControlName="address">
+            <mat-error *ngIf="address1.invalid">{{getAddressErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div class="totals">
+            <span class="totals--text">Сумма к оплате</span>
+            <span class="totals--text">{{totalPrice}} mdl</span>
+        </div>
+        <div class="manage-btns">
+            <button [routerLink]="['/cart']" class="manage-btns__btn" mat-raised-button color="primary">
+              Вернуться в корзину
+            </button>
+            <button type="submit" class="manage-btns__btn" mat-raised-button color="warn">
+                Завершить заказ
+            </button>
+        </div>
+    </form>
+    
+    
+      
+</div>
+

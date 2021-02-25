@@ -1,0 +1,76 @@
+<div *ngIf="cartItems.length > 0; else elseBlock" class="cart-view">
+
+  <span class="cart-view__header">Ваш заказ</span>
+  <!-- <hr class="line"> -->
+  <div class="cart-view__separator">
+    <hr>
+  </div>
+
+  <div *ngFor="let product of cartItems" class="cart-view__body">
+    <div class="line1">
+      <div class="main-row">
+
+        <img class="main-row__image" src="{{product.itemPictureUrl}}">
+
+        <div class="main-row__info">
+          <span class="main-row__info--name">{{product.itemLabel}}</span>
+          <span class="main-row__info--description">{{product.itemDescription}}</span>
+        </div>
+      </div>
+      <div class="second-row">
+
+        <div>
+          <button (click)="subOneFromCart(product)" mat-stroked-button color="warn">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="second-row--count">
+            x{{productCountMap[product.itemId]}}
+          </span>
+
+          <button (click)="addOneToCart(product)" mat-stroked-button color="warn">
+            <mat-icon>add icon</mat-icon>
+          </button>
+        </div>
+
+        <div>
+          <span>{{productCountMap[product.itemId]}} x {{product.itemPrice}} mdl</span>
+        </div>
+
+        <div>
+          <button mat-mini-fab color="warn" (click)="deleteItem(product)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="line2">
+      <hr>
+    </div>
+
+
+  </div>
+
+  <div class="cart-view__footer">
+    <div class="totals">
+      <span class="totals--text">Итого</span>
+      <span class="totals--text">{{totalPrice}} mdl</span>
+    </div>
+    <div class="manage-btns">
+      <button [routerLink]="['/']" class="manage-btns__btn" mat-raised-button color="primary">
+        Продолжить покупки
+      </button>
+      <button [routerLink]="['/order-form']" class="manage-btns__btn" mat-raised-button color="warn">Оформить заказ</button>
+    </div>
+
+  </div>
+
+
+</div>
+<ng-template #elseBlock>
+  <div class="cart-view">
+    <app-carousel></app-carousel>
+    <span class="text">Ваша корзина пустая.</span>
+  </div>
+</ng-template>
