@@ -46,7 +46,7 @@ export class CompleteFormComponent implements OnInit, OnDestroy {
 
    ngOnInit(): void {
     this._sub.add(
-      this._shoppingCart.getCartItemsToDisplay().pipe(
+      this._shoppingCart.getCartItems().pipe(
         tap((cartItems) => this.cartItems = cartItems)
       ).subscribe()
     );
@@ -97,11 +97,15 @@ export class CompleteFormComponent implements OnInit, OnDestroy {
         orderItems: this.cartItems,
       }
       this._service.sendOrder(currOrder);
+      this._shoppingCart.resetAll();
       this._snackBar.open(currOrder.customerName + ", Спасибо за заказ! Ожидайте курьера в течении часа.","x", {
         duration: 10000,
       });
       this._router.navigate(['/']);
     }
   }
+
+
+  
 
 }

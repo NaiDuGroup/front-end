@@ -25,6 +25,7 @@ export class ShoppingCartService {
     this.cartItems.push(product);
     this.totalPrice += product.itemPrice;
 
+    this._cartItems.next(this.cartItems);
     this._cartItemsToDisplay.next(this.prepareToDisplay(this.cartItems));
     this._productCountMap.next(this.prepareProductCountMap(this.cartItems));
     this._totalPrice.next(this.totalPrice);
@@ -101,5 +102,12 @@ export class ShoppingCartService {
 
       return acc;
     }, []);
+  }
+
+  resetAll(): void {
+    this._cartItems.next([]);
+    this._cartItemsToDisplay.next([]);
+    this._productCountMap.next(this.prepareProductCountMap([]));
+    this._totalPrice.next(0);
   }
 }
