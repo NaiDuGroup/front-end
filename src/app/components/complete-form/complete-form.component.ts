@@ -20,10 +20,10 @@ export class CompleteFormComponent implements OnInit, OnDestroy {
   totalPrice: number = 0;
 
   orderForm = this._formBuilder.group({
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    address: new FormControl('', [Validators.required]),
-    telephone: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, Validators.minLength(7), Validators.email]),
+    address: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    telephone: new FormControl('', [Validators.required, Validators.minLength(7)])
   })
 
   
@@ -92,11 +92,11 @@ export class CompleteFormComponent implements OnInit, OnDestroy {
         address: this.address1.value,
         customerEmail: this.email1.value,
         customerName: this.name1.value,
-        customerPhoneNumber: this.tel1.value,
+        customerPhoneNumber: this.tel1.value.toString(),
         orderTotalPrice: this.totalPrice,
         orderItems: this.cartItems,
       }
-      this._service.sendOrder(currOrder);
+      this._service.sendOrder(currOrder).subscribe();
       this._shoppingCart.resetAll();
       this._snackBar.open(currOrder.customerName + ", Спасибо за заказ! Ожидайте курьера в течении часа.","x", {
         duration: 10000,

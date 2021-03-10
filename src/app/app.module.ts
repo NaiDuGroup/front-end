@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -60,7 +61,8 @@ import { CompleteFormComponent } from './components/complete-form/complete-form.
     MatFormFieldModule,
     MatInputModule,
     FormsModule, 
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MatProgressSpinnerModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

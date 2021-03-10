@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Product } from '../types';
@@ -6,7 +6,7 @@ import { Product } from '../types';
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartService {
+export class ShoppingCartService implements OnInit {
 
   totalPrice: number = 0;
   cartItems: Product[] = [];
@@ -14,16 +14,36 @@ export class ShoppingCartService {
   productCountMap: {} = {};
   cartItemsToDisplay: Product[] = [];
 
-  private _totalPrice = new BehaviorSubject < number > (this.totalPrice);
-  private _cartItems = new BehaviorSubject < Product[] > (this.cartItems);
-  private _cartItemsToDisplay = new BehaviorSubject < Product[] > (this.cartItemsToDisplay);
-  private _productCountMap = new BehaviorSubject < {} > (this.productCountMap);
+  private _totalPrice;
+  private _cartItems;
+  private _cartItemsToDisplay;
+  private _productCountMap;
 
-  constructor() {}
+  constructor() {
+    if(localStorage.getItem('cart')) {
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      this._totalPrice = new BehaviorSubject < number > (cart.totalPrice);
+      this._cartItems = new BehaviorSubject < Product[] > (cart.cartItems);
+      this._cartItemsToDisplay = new BehaviorSubject < Product[] > (cart.cartItemsToDisplay);
+      this._productCountMap = new BehaviorSubject < {} > (cart.productCountMap);
+    } else {
+      this._totalPrice = new BehaviorSubject < number > (this.totalPrice);
+      this._cartItems = new BehaviorSubject < Product[] > (this.cartItems);
+      this._cartItemsToDisplay = new BehaviorSubject < Product[] > (this.cartItemsToDisplay);
+      this._productCountMap = new BehaviorSubject < {} > (this.productCountMap);
+    }
+  }
+
+  ngOnInit() {
+    
+  }
 
   addItem(product: Product) {
-    this.cartItems.push(product);
     this.totalPrice += product.itemPrice;
+    this.cartItems.push(product);
+    this.productCountMap = this.prepareProductCountMap(this.cartItems);
+    this.cartItemsToDisplay = this.prepareToDisplay(this.cartItems);
+    this._saveToLocalStorage();
 
     this._cartItems.next(this.cartItems);
     this._cartItemsToDisplay.next(this.prepareToDisplay(this.cartItems));
@@ -37,6 +57,9 @@ export class ShoppingCartService {
     const tempN = this.cartItems.length;
 
     this.totalPrice = this.totalPrice - (product.itemPrice * (tempP - tempN));
+    this.productCountMap = this.prepareProductCountMap(this.cartItems);
+    this.cartItemsToDisplay = this.prepareToDisplay(this.cartItems);
+    this._saveToLocalStorage();
 
     this._cartItems.next(this.cartItems);
     this._cartItemsToDisplay.next(this.prepareToDisplay(this.cartItems));
@@ -46,6 +69,7 @@ export class ShoppingCartService {
 
   deleteOneItem(product: Product): void {
     let tempId = 0;
+    
     for (let i = 0; i < this.cartItems.length; i++) {
       if (this.cartItems[i].itemId == product.itemId) {
         tempId = i;
@@ -57,6 +81,9 @@ export class ShoppingCartService {
     }
 
     this.totalPrice -= product.itemPrice;
+    this.productCountMap = this.prepareProductCountMap(this.cartItems);
+    this.cartItemsToDisplay = this.prepareToDisplay(this.cartItems);
+    this._saveToLocalStorage();
 
     this._cartItems.next(this.cartItems);
     this._totalPrice.next(this.totalPrice);
@@ -81,7 +108,7 @@ export class ShoppingCartService {
   }
 
   prepareProductCountMap(cartItems: Product[]): object {
-    return this.cartItems.reduce((acc: {[key: string]: number }, curr ) => {
+    return cartItems.reduce((acc: {[key: string]: number }, curr ) => {
       if (!acc[curr.itemId]) {
         acc[curr.itemId] = 0
       }
@@ -105,9 +132,25 @@ export class ShoppingCartService {
   }
 
   resetAll(): void {
-    this._cartItems.next([]);
-    this._cartItemsToDisplay.next([]);
-    this._productCountMap.next(this.prepareProductCountMap([]));
-    this._totalPrice.next(0);
+    this.totalPrice = 0;
+    this.cartItems = [];
+    this.productCountMap = null;
+    this.cartItems = [];
+    this._saveToLocalStorage();
+
+    this._cartItems.next(this.cartItems);
+    this._totalPrice.next(this.totalPrice);
+    this._cartItemsToDisplay.next(this.prepareToDisplay(this.cartItems));
+    this._productCountMap.next(this.prepareProductCountMap(this.cartItems));
+  }
+
+  private _saveToLocalStorage() {
+    let cart = {
+      totalPrice: this.totalPrice,
+      cartItems: this.cartItems,
+      productCountMap: this.productCountMap,
+      cartItemsToDisplay: this.cartItemsToDisplay
+    }
+    localStorage.setItem("cart", JSON.stringify(cart))
   }
 }

@@ -1,2 +1,8 @@
-<app-product-list *ngIf="breakfastCategoryProducts$ | async as breakfasts" [categoryId]="3" [products]="breakfasts">
+<app-product-list 
+    *ngIf="breakfastCategoryProducts$ | async as breakfasts; else elseBlock" 
+    [categoryId]="3" 
+    [products]="breakfasts">
 </app-product-list>
+<ng-template #elseBlock>
+    <mat-spinner [diameter]="200" class="spinner"></mat-spinner>
+</ng-template>

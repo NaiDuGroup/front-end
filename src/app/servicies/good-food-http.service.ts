@@ -23,6 +23,6 @@ export class GoodFoodHttpService {
   }
 
   sendOrder(order: Order): Observable<any> {
-    return this._http.post<Order>(apiGoodFoodSendOrder(), order);
+    return this._http.post<Observable<Order>>(apiGoodFoodSendOrder(), order);
   }
 }
