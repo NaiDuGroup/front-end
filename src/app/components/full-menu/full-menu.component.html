@@ -3,13 +3,13 @@
 <app-product-list *ngIf="breakfastCategoryProducts$ | async as breakfasts; else elseBlock" [categoryId]="3" [products]="breakfasts">
 </app-product-list>
 
-<app-product-list *ngIf="hotMealCategoryProducts$ | async as hotMeals; else elseBlock" [categoryId]="2" [products]="hotMeals">
+<app-product-list *ngIf="hotMealCategoryProducts$ | async as hotMeals" [categoryId]="2" [products]="hotMeals">
 </app-product-list>
 
-<app-product-list *ngIf="soupCategoryProducts$ | async as soups; else elseBlock" [categoryId]="1" [products]="soups">
+<app-product-list *ngIf="soupCategoryProducts$ | async as soups" [categoryId]="1" [products]="soups">
 </app-product-list>
 
-<app-product-list *ngIf="dessertCategoryProducts$ | async as desserts; else elseBlock" [categoryId]="4" [products]="desserts">
+<app-product-list *ngIf="dessertCategoryProducts$ | async as desserts" [categoryId]="4" [products]="desserts">
 </app-product-list>
 
 <ng-template #elseBlock>
