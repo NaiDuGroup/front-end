@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  goodFoodApiHost: 'https://goodfoodwebapi20210221215009.azurewebsites.net',
+  goodFoodApiHost: 'https://goodfoodwebapi20210320212352.azurewebsites.net',
 };
 
 /*
